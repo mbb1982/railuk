@@ -43,6 +43,6 @@ def page_to_table(url,table,keys,on_head,on_row)
   }
 end
 
-page_to_table('http://www.railuk.info/diesel/loco_search.php','stock',['number'],nil,nil)
+page_to_table('http://www.railuk.info/diesel/loco_search.php','stock',['Number'],nil,nil)
 
 
