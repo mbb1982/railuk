@@ -53,8 +53,8 @@ end
 
 page_to_table('http://www.railuk.info/diesel/class_search.php','class',['Class'],nil,nil)
 page_to_table('http://www.railuk.info/diesel/depot_search.php','depot',['Depot'],nil,nil)
-page_to_table('http://www.railuk.info/diesel/livery_search.php','livery',['Livery Code'],nil,nil)
-page_to_table('http://www.railuk.info/diesel/pool_search.php','pool',['Pool Code'],nil,nil)
+page_to_table('http://www.railuk.info/diesel/livery_search.php','livery',['Livery_Code'],nil,nil)
+page_to_table('http://www.railuk.info/diesel/pool_search.php','pool',['Pool_Code'],nil,nil)
 page_to_table('http://www.railuk.info/diesel/loco_search.php','stock',['Number'],nil,nil)
 
 
