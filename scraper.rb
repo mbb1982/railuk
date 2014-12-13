@@ -10,6 +10,7 @@ def page_to_table(url,table,keys,on_head,on_row)
   first_row = true
   fields = {}
   page.search("table tr").each { |row|
+    puts row.inner_text
     if first_row
       fields = row.search("td").map{|field| field.inner_text.sub!(/^(\W)+/,"")}
       puts fields
