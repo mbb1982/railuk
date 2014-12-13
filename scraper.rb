@@ -52,7 +52,7 @@ end
 
 page_to_table('http://www.railuk.info/diesel/unit_search.php',"stock",['Number'],
 lambda {|x| x.map!{|v| v.sub(/Set_Number/,"Number")}},
-lambda {|x| x.delete!("Car_Numbers")})
+lambda {|x,y| x.delete!("Car_Numbers")})
 
 page_to_table('http://www.railuk.info/diesel/class_search.php','class',['Class'],nil,nil)
 page_to_table('http://www.railuk.info/diesel/depot_search.php','depot',['Depot'],nil,nil)
