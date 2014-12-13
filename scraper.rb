@@ -13,7 +13,7 @@ def page_to_table(url,table,keys,on_head,on_row)
     page.search("table tr").each { |row|
       
       if first_row
-        fields = row.search("td").map{|field| puts field
+        fields = row.search("td").map{|field|
         field.inner_text.encode("UTF-8").sub(/^(\W)+/,"").gsub(/\W/,"_")}
         if !on_head.nil?
           on_head.call(fields)
