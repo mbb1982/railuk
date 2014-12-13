@@ -15,7 +15,6 @@ def page_to_table(url,table,keys,on_head,on_row)
       if first_row
         fields = row.search("td").map{|field| puts field
         field.inner_text.encode("UTF-8").sub(/^(\W)+/,"").gsub(/\W/,"_")}
-        puts fields
         if !on_head.nil?
           on_head.call(fields)
         end
