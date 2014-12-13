@@ -52,7 +52,7 @@ def page_to_table(url,table,keys,on_head,on_row)
 end
 
 page_to_table('http://www.railuk.info/diesel/unit_search.php',"stock",['Number'],
-lambda {|x| x.map!{|v| v.sub(/Unit Number/,"Number")}},
+lambda {|x| x.map!{|v| v.sub(/Set_Number/,"Number")}},
 lambda {|x| x.delete!("Car_Numbers")})
 
 page_to_table('http://www.railuk.info/diesel/class_search.php','class',['Class'],nil,nil)
