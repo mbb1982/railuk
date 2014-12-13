@@ -42,7 +42,7 @@ def page_to_table(url,table,keys,on_head,on_row)
         end
       end
     }
-    page = page.links_with(:text=>"FDFS")[0]
+    page = page.links_with(:text=>"Next")[0]
     
   end
 end
