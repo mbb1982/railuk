@@ -14,7 +14,7 @@ def page_to_table(url,table,keys,on_head,on_row)
       puts row.inner_text
       if first_row
         fields = row.search("td").map{|field| puts field
-        field.inner_text.sub(/^(\W)+/,"").gsub(/\W/,"_")}
+        field.inner_text.encode("UTF-8").sub(/^(\W)+/,"").gsub(/\W/,"_")}
         puts fields
         if !on_head.nil?
           on_head.call(fields)
@@ -23,7 +23,7 @@ def page_to_table(url,table,keys,on_head,on_row)
       else
         add_to_db = true
         item = {}
-        values = row.search("td").map{|field| field.inner_text.sub(/^(\W)+/,"")}
+        values = row.search("td").map{|field| field.inner_text.encode("UTF-8").sub(/^(\W)+/,"")}
         next if values[0] == "" || values[0] == nil
         i=0
         values.each{|value|
