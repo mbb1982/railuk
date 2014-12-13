@@ -42,7 +42,11 @@ def page_to_table(url,table,keys,on_head,on_row)
         end
       end
     }
-    page = page.links_with(:text=>"Next")[0]
+    if next_link = page.links_with(:text=>"Next")[0]
+      page = next_link.click
+    else
+      page = nil
+    end
     
   end
 end
