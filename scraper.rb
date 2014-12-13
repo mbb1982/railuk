@@ -14,7 +14,7 @@ def page_to_table(url,table,keys,on_head,on_row)
       puts row.inner_text
       if first_row
         fields = row.search("td").map{|field| puts field
-        field.inner_text.sub(/^(\W)+/,"")}
+        field.inner_text.sub(/^(\W)+/,"").gsub(/\W/,"_")}
         puts fields
         if !on_head.nil?
           on_head.call(fields)
