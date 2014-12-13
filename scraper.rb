@@ -1,24 +1,34 @@
-# This is a template for a Ruby scraper on Morph (https://morph.io)
-# including some code snippets below that you should find helpful
 
-# require 'scraperwiki'
-# require 'mechanize'
-#
-# agent = Mechanize.new
-#
-# # Read in a page
-# page = agent.get("http://foo.com")
-#
-# # Find somehing on the page using css selectors
-# p page.at('div.content')
-#
-# # Write out to the sqlite database using scraperwiki library
-# ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
-#
-# # An arbitrary query against the database
-# ScraperWiki.select("* from data where 'name'='peter'")
+require 'scraperwiki'
+require 'nokogiri'
+require 'mechanize'
+$agent = Mechanize.new
 
-# You don't have to do things with the Mechanize or ScraperWiki libraries. You can use whatever gems are installed
-# on Morph for Ruby (https://github.com/openaustralia/morph-docker-ruby/blob/master/Gemfile) and all that matters
-# is that your final data is written to an Sqlite database called data.sqlite in the current working directory which
-# has at least a table called data.
+
+def page_to_table(url,table,keys,on_head,on_row)
+  page = $agent.get(url)
+  first_row = true
+  page.search("table tr").each { |row|
+    if first_row
+      fields = row.search("td").map{|field| field.inner_text.sub!(/^(\p{Z}|\p{Cc})+/,"")}
+      if !on_head.nil?
+        on_head.call(fields)
+      end
+      first_row = false
+    else
+      add_to_db = true
+      values = row.search("td").map{|field| field.inner_text.sub!(/^(\p{Z}|\p{Cc})+/,"")}
+      next if values[0] == "" || values[0] == nil
+      i=0
+      values.each{|value|
+        key = fields[i]
+        item[key]=value
+        i=i.next
+      }
+      
+      if add_to_db
+        ScraperWiki::save_sqlite(keys,item,table)
+      end
+    end
+  }
+end
