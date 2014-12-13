@@ -11,7 +11,7 @@ def page_to_table(url,table,keys,on_head,on_row)
     first_row = true
     fields = {}
     page.search("table tr").each { |row|
-      puts row.inner_text
+      
       if first_row
         fields = row.search("td").map{|field| puts field
         field.inner_text.encode("UTF-8").sub(/^(\W)+/,"").gsub(/\W/,"_")}
