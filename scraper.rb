@@ -51,6 +51,10 @@ def page_to_table(url,table,keys,on_head,on_row)
   end
 end
 
+page_to_table('http://www.railuk.info/diesel/unit_search.php',['Number'],
+lambda {|x| x.map!{|v| v.sub(/Unit Number/,"Number")}},
+lambda {|x| x.delete!("Car_Numbers")})
+
 page_to_table('http://www.railuk.info/diesel/class_search.php','class',['Class'],nil,nil)
 page_to_table('http://www.railuk.info/diesel/depot_search.php','depot',['Depot'],nil,nil)
 page_to_table('http://www.railuk.info/diesel/livery_search.php','livery',['Livery_Code'],nil,nil)
