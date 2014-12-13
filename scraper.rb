@@ -10,14 +10,14 @@ def page_to_table(url,table,keys,on_head,on_row)
   first_row = true
   page.search("table tr").each { |row|
     if first_row
-      fields = row.search("td").map{|field| field.inner_text.sub!(/^(\p{Zs}|\p{Cc})+/,"")}
+      fields = row.search("td").map{|field| field.inner_text.sub!(/^(\W)+/,"")}
       if !on_head.nil?
         on_head.call(fields)
       end
       first_row = false
     else
       add_to_db = true
-      values = row.search("td").map{|field| field.inner_text.sub!(/^(\p{Zs}|\p{Cc})+/,"")}
+      values = row.search("td").map{|field| field.inner_text.sub!(/^(\W)+/,"")}
       next if values[0] == "" || values[0] == nil
       i=0
       values.each{|value|
