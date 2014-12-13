@@ -27,6 +27,7 @@ def page_to_table(url,table,keys,on_head,on_row)
         item[key]=value
         i=i.next
       }
+      puts item
       
       if !on_row.nil?
         on_row.call(item,add_to_db)
