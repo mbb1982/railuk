@@ -18,6 +18,7 @@ def page_to_table(url,table,keys,on_head,on_row)
       first_row = false
     else
       add_to_db = true
+      item = {}
       values = row.search("td").map{|field| field.inner_text.sub!(/^(\W)+/,"")}
       next if values[0] == "" || values[0] == nil
       i=0
