@@ -26,9 +26,17 @@ def page_to_table(url,table,keys,on_head,on_row)
         i=i.next
       }
       
+      if !on_row.nil?
+        on_row.call(item,add_to_db)
+      end
+      
       if add_to_db
         ScraperWiki::save_sqlite(keys,item,table)
       end
     end
   }
 end
+
+page_to_table('http://www.railuk.info/diesel/loco_search.php','stock',['number'],nil,nil)
+
+
