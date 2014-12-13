@@ -8,6 +8,7 @@ $agent = Mechanize.new
 def page_to_table(url,table,keys,on_head,on_row)
   page = $agent.get(url)
   first_row = true
+  fields = {}
   page.search("table tr").each { |row|
     if first_row
       fields = row.search("td").map{|field| field.inner_text.sub!(/^(\W)+/,"")}
